@@ -9,7 +9,7 @@ const Contact: FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await fetch("/api/contact", {
+    const resp = await fetch("/api/contact", {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: {
@@ -17,7 +17,8 @@ const Contact: FC = () => {
         Accept: "application/json",
       },
     });
-    console.log("🚀 ~ file: page.tsx:21 ~ handleSubmit");
+    const jsonData = await resp.json();
+    console.log("🚀 ~ file: page.tsx:21 ~ handleSubmit ~ data: ", jsonData.data.message);
   };
 
   return (
